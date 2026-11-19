@@ -1,0 +1,175 @@
+/* ===== 0. 全体の土台 ===== */
+* {
+    box-sizing: border-box;              /* 幅の中に余白(padding)もふくめて計算する */
+}
+
+body {
+    margin: 0;                           /* ブラウザが最初につける外側の余白を消す */
+    background: #f4f7fb;                 /* ページ全体をうすい青グレーに */
+    color: #1f2a37;                      /* 文字は真っ黒でなく、こい紺グレー */
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; /* 読みやすい日本語フォント */
+    line-height: 1.7;                    /* 行と行のあいだを少し広げる */
+}
+
+/* ===== 1. 上のヘッダー(タイトル部分) ===== */
+div.title {
+    background: linear-gradient(135deg, #0b3d91, #1a6fe0); /* こい青→明るい青のグラデーション */
+    color: #fff;                         /* 文字を白に */
+    text-align: center;                  /* 中央ぞろえ */
+    padding: 48px 16px 40px;             /* 上 48px・左右 16px・下 40px の内側余白 */
+}
+
+h1.title {
+    margin: 0 0 8px;                     /* 下だけ 8px あける */
+    font-size: 32px;                     /* 文字の大きさ */
+    letter-spacing: 0.05em;              /* 文字どうしを少しはなす */
+}
+
+.gaiyou {
+    margin: 0;                           /* 外側の余白を消す */
+    opacity: 0.85;                       /* 少しだけ透かして、見出しより目立たなくする */
+}
+
+/* ===== 2. 左右に並べる外わく ===== */
+.split {
+    display: flex;                       /* 中の箱を横に並べる */
+    gap: 24px;                           /* 左右の箱のすき間 */
+    max-width: 1200px;                   /* 広がりすぎないように最大の幅を決める */
+    margin: -24px auto 48px;             /* 上を -24px でヘッダーに少し重ねる / 左右 auto で中央へ */
+    padding: 0 24px;                     /* 画面のはしとの余白 */
+    align-items: flex-start;             /* 上はしでそろえる */
+}
+
+.interview_left,
+.split-item {
+    width: 50%;                          /* 左右とも半分ずつ */
+}
+
+/* ===== 3. カード(白い箱) ===== */
+.split-left_inner,
+.split-right__inner {
+    background: #fff;                    /* 白い背景 */
+    border-radius: 16px;                 /* 角を丸くする */
+    padding: 32px;                       /* カードの内側の余白 */
+    box-shadow: 0 8px 24px rgba(11, 61, 145, 0.08); /* うすい青い影で、浮いて見せる */
+    border-top: 4px solid #1a6fe0;       /* 上に青い線をひいて、きちんと感を出す */
+}
+
+/* ===== 4. 入力欄 ===== */
+#word,
+#keitaiso_word {
+    width: 100%;                         /* 入れ物いっぱいの幅 */
+    border: 1px solid #d0d9e6;           /* うすいグレーのふち */
+    border-radius: 10px;                 /* 角を丸く */
+    padding: 14px 16px;                  /* 文字のまわりの余白 */
+    font-size: 15px;                     /* 文字の大きさ */
+    background: #fafcff;                 /* ほんのり青い白 */
+    outline: none;                       /* ブラウザの太いわくを消す(下の focus で代わりを出す) */
+    transition: border-color 0.2s, box-shadow 0.2s; /* 色の変化を 0.2秒でなめらかに */
+}
+
+#word {
+    height: 320px;                       /* 長い文章が入るように高く */
+    resize: vertical;                    /* たて方向だけ大きさを変えられる */
+}
+
+#keitaiso_word {
+    height: 100px;                       /* 名詞が入る欄は低め */
+}
+
+#word:focus,
+#keitaiso_word:focus {
+    border-color: #1a6fe0;               /* 入力中はふちを青に */
+    box-shadow: 0 0 0 4px rgba(26, 111, 224, 0.15); /* まわりにうすい青の光 */
+}
+
+/* ===== 5. ボタン ===== */
+button {
+    display: block;                      /* 1行まるごと使う箱にする */
+    width: 100%;                         /* 横いっぱいの大きなボタン */
+    margin-top: 16px;                    /* 上の入力欄とのすき間 */
+    padding: 14px;                       /* ボタンの内側の余白(押しやすい大きさ) */
+    border: none;                        /* ふちを消す */
+    border-radius: 10px;                 /* 角を丸く */
+    background: #1a6fe0;                 /* 信頼感のある青 */
+    color: #fff;                         /* 文字は白 */
+    font-size: 16px;                     /* 文字の大きさ */
+    font-weight: bold;                   /* 太字 */
+    cursor: pointer;                     /* マウスをのせると指マークに */
+    transition: background 0.2s, transform 0.1s; /* 色と動きをなめらかに */
+}
+
+button:hover {
+    background: #0b3d91;                 /* マウスをのせたら、こい青に */
+}
+
+button:active {
+    transform: translateY(1px);          /* 押した瞬間に 1px 下へ(押した感じ) */
+}
+
+.deleta button {
+    background: #fff;                    /* 削除ボタンは白にして、目立たせすぎない */
+    color: #d64545;                      /* 文字は赤(注意の色) */
+    border: 1px solid #f0c4c4;           /* うすい赤のふち */
+}
+
+.deleta button:hover {
+    background: #fff5f5;                 /* のせたら、ほんのり赤い背景 */
+}
+
+/* ===== 6. 状態の表示 ===== */
+#status {
+    font-size: 13px;                     /* 小さめの文字 */
+    color: #6b7a90;                      /* うすいグレー */
+}
+
+/* ===== 7. 抽出した名詞(チップ) ===== */
+#word_list {
+    list-style: none;                    /* 先頭の「・」を消す */
+    padding: 0;                          /* 左の空きを消す */
+    display: flex;                       /* 横に並べる */
+    flex-wrap: wrap;                     /* はみ出したら次の行へ */
+    gap: 8px;                            /* 単語どうしのすき間 */
+    overflow-wrap: anywhere;             /* 長い単語も折り返す */
+}
+
+#word_list li {
+    background: #e8f0fe;                 /* うすい青の背景 */
+    color: #0b3d91;                      /* こい青の文字 */
+    padding: 4px 12px;                   /* 文字のまわりの余白 */
+    border-radius: 999px;                /* 両はしをまん丸に */
+    font-size: 14px;                     /* 少し小さめ */
+}
+
+/* ===== 8. 職業の結果 ===== */
+.job_list p {
+    margin: 28px 0 12px;                 /* 上を広めにあけて、区切りを作る */
+    font-weight: bold;                   /* 見出しっぽく太字 */
+    color: #0b3d91;                      /* こい青 */
+}
+
+#job_result {
+    list-style: none;                    /* 「・」を消す */
+    padding: 0;                          /* 左の空きを消す */
+    margin: 0;                           /* 外側の余白を消す */
+}
+
+#job_result li {
+    padding: 14px 16px;                  /* 1件ずつの内側の余白 */
+    margin-bottom: 10px;                 /* 下の件とのすき間 */
+    border: 1px solid #e3e9f2;           /* うすいふち */
+    border-left: 4px solid #1a6fe0;      /* 左に青い線(求人カード風) */
+    border-radius: 8px;                  /* 角を丸く */
+    background: #fafcff;                 /* ほんのり青い白 */
+}
+
+/* ===== 9. スマホ(画面がせまいとき) ===== */
+@media (max-width: 768px) {
+    .split {
+        flex-direction: column;          /* 横並び → たて並びに */
+    }
+    .interview_left,
+    .split-item {
+        width: 100%;                     /* それぞれ横いっぱい */
+    }
+}

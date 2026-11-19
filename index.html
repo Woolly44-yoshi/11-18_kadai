@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メモアプリ</title>
+    <link rel="stylesheet" href="stlye02.css">
+</head>
+<body>
+    <!-- タイトル -->
+<div class="title">
+    <h1 class="title">インタビュー✖️職業選択アプリ</h1>
+    <p class="gaiyou">インタビュー内容を形態素解析して、名詞から職業を提案します。</p> 
+</div>
+
+<!-- 左側_インタビュー内容の添付 -->
+<div class="split">
+    <div class="interview_left split-left">
+        <div class="split-left_inner">
+            <!--誤った入力 <input type="text" id="word" placeholder="インタビュー内容を添付してください"> -->
+            <textarea id="word" placeholder="インタビュー内容を添付してください"></textarea>
+            <!-- textで入力、IDをwordにした -->
+            <button onclick="research()" id="research_on">言葉を抽出する</button>
+            <!-- research()を関数として、DI'research_om'をonclickに入れた -->
+            <p id="status">辞書を読みこみ中…</p>
+            <ul id="word_list"></ul>
+        </div>
+    </div>
+
+<!-- 右に分割 -->
+    <div class="split-item split-right">
+        <div class="split-right__inner">
+
+            <!-- 右側_形態素解析の追加 -->
+            <!-- <input type="text" id="keitaiso_word" placeholder="仕事、名刺、田中"> -->
+            <textarea id="keitaiso_word" placeholder="インタビュー内容を添付してください"></textarea>
+                <!-- テキストを入力、IDを"keitaiso_word"にした -->
+            <button onclick="keitaiso()">職業を調べる</button>
+                <!-- 関数をkeitaiso()にした -->
+
+            <!-- 職業の検索とリスト化 -->
+            <div class="job_list">
+                <p>あなたの適切な職業を検索して出します。</p>
+                <ul id="job_result"></ul><!-- 入力欄を作成 -->
+            </div>
+        
+            <!-- 削除ボタンの追加 -->
+            <div class="deleta">
+                <button onclick="deleta()">データを削除する</button>
+            </div> <!-- delete -->
+        </div><!--split-right__inner-->
+    </div><!-- split-item split-right -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- 形態素解析ツールをインポート -->
+<script src="main.js"></script><!-- js使うよ -->
+
+</body>
+</html>
